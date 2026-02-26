@@ -1,26 +1,225 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --primary: #00C800;
+  --primary-hover: #00A000;
+  --secondary: #1A1A1A;
+  --text-muted: #6B7280;
+  --bg-light: #FFFFFF;
+  --bg-off-white: #F9FAFB;
+  --border: #E5E7EB;
+  --input-bg: #F3F4F6;
+  --font-inter: 'Inter', sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+html,
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  max-width: 100vw;
+  overflow-x: hidden;
+  font-family: var(--font-inter);
+  background-color: var(--bg-light);
+  color: var(--secondary);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Base styles for the layout */
+.main-container {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.intro-section {
+  flex: 1;
+  background-color: var(--bg-light);
+  display: flex;
+  flex-direction: column;
+  padding: 60px 80px;
+  justify-content: space-between;
+}
+
+.login-section {
+  flex: 1;
+  background-color: var(--bg-off-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+/* Component Styles */
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 800;
+  font-size: 28px;
+  letter-spacing: -1px;
+  color: var(--secondary);
+}
+
+.logo-icon {
+  width: 40px;
+  height: 40px;
+}
+
+.illustration-box {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 600px;
+  margin: 60px auto;
+}
+
+.illustration-box img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.intro-content h1 {
+  font-size: 42px;
+  line-height: 1.1;
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: var(--secondary);
+}
+
+.intro-content p {
+  color: var(--text-muted);
+  line-height: 1.6;
+  font-size: 17px;
+  max-width: 600px;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 440px;
+}
+
+.login-card-header {
+  text-align: center;
+}
+
+.login-card h2 {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.login-card .subtitle {
+  color: var(--text-muted);
+  margin-bottom: 48px;
+  font-size: 16px;
+}
+
+.form-group {
+  text-align: left;
+  margin-bottom: 24px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.input-wrapper {
+  position: relative;
+}
+
+.form-input {
+  width: 100%;
+  padding: 16px 20px;
+  border-radius: 12px;
+  border: 1.5px solid var(--border);
+  background-color: var(--bg-light);
+  font-size: 16px;
+  transition: all 0.2s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(0, 200, 0, 0.1);
+}
+
+.password-toggle {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 15px;
+  color: var(--secondary);
+  margin-bottom: 40px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.remember-me input {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--primary);
+  cursor: pointer;
+}
+
+.login-button {
+  width: 100%;
+  padding: 18px;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.login-button:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 200, 0, 0.2);
+}
+
+@media (max-width: 1024px) {
+  .main-container {
+    flex-direction: column;
+  }
+
+  .intro-section {
+    padding: 60px 40px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .intro-content p {
+    margin: 0 auto;
+  }
+
+  .login-section {
+    padding: 60px 20px;
+  }
 }
