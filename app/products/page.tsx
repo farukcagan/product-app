@@ -1,16 +1,15 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '../store/hooks';
-import { fetchProducts, fetchCategories, setCurrentPage } from '../store/slices/productsSlice';
-import { ProductCard } from '../components/ProductCard';
 import { Header } from '../components/Header';
+import { ProductCard } from '../components/ProductCard';
 import { Sidebar } from '../components/Sidebar';
 import { ProductSkeleton } from '../components/Skeleton';
-import { useRouter } from 'next/navigation';
+import { SearchSvg } from '../components/svg-components';
+import { useAppDispatch, useAppSelector } from '../store/hooks';
+import { fetchCategories, fetchProducts, setCurrentPage } from '../store/slices/productsSlice';
 import { RootState } from '../store/store';
-import { Button, Select } from '../components/ui-components';
-import { SearchSvg, ChevronSvg } from '../components/svg-components';
 
 
 export default function ProductsPage() {

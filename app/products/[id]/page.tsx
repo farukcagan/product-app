@@ -1,17 +1,17 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { useParams, useRouter } from 'next/navigation';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { addToCart, updateCartOnServer } from '../../store/slices/cartSlice';
-import { fetchProductById, clearSelectedProduct } from '../../store/slices/productsSlice';
+import axios from 'axios';
 import Image from 'next/image';
+import { useParams, useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import { Header } from '../../components/Header';
 import { Skeleton } from '../../components/Skeleton';
-import { RootState } from '../../store/store';
-import axios from 'axios';
+import { CheckSvg, StarSvg } from '../../components/svg-components';
 import { Button } from '../../components/ui-components';
-import { StarSvg, CheckSvg, CartSvg } from '../../components/svg-components';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { addToCart, updateCartOnServer } from '../../store/slices/cartSlice';
+import { clearSelectedProduct, fetchProductById } from '../../store/slices/productsSlice';
+import { RootState } from '../../store/store';
 
 
 interface Comment {
