@@ -54,7 +54,7 @@ export default function ProductsPage() {
         <div className="min-h-screen bg-brand-bg-off-white">
             <Header />
 
-            <main className="flex pt-[50px]">
+            <main className="flex pt-[70px]">
                 <Sidebar />
 
                 <div className="lg:ml-[320px] flex-1 p-6 lg:p-10 transition-all">
