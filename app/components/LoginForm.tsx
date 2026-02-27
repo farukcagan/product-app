@@ -1,75 +1,113 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { CONTENT } from '../constants/content';
+import { useAppDispatch, useAppSelector } from '../store/hooks';
+import { login, clearError } from '../store/slices/authSlice';
+import { useRouter } from 'next/navigation';
+import { RootState } from '../store/store';
+import { Button, Input, Checkbox } from './ui-components';
+import { AlertSvg, EyeSvg } from './svg-components';
+
 
 export const LoginForm = () => {
     const [showPassword, setShowPassword] = useState(false);
+    const [username, setUsername] = useState('emilys');
+    const [password, setPassword] = useState('emilyspass');
+
+    const dispatch = useAppDispatch();
+    const router = useRouter();
+    const { loading, error, isAuthenticated } = useAppSelector((state: RootState) => state.auth);
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            router.push('/products');
+        }
+    }, [isAuthenticated, router]);
+
+    useEffect(() => {
+        return () => {
+            dispatch(clearError());
+        };
+    }, [dispatch]);
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        dispatch(login({ username, password }));
+    };
 
     return (
-        <section className="login-section">
-            <div className="login-card">
-                <div className="login-card-header">
-                    <h2>{CONTENT.login.welcome}</h2>
-                    <p className="subtitle">{CONTENT.login.subtitle}</p>
+        <section className="flex flex-1 items-center justify-center bg-brand-bg-off-white px-5 py-[60px] lg:px-10 lg:py-10">
+            <div className="w-full max-w-[440px] animate-in fade-in slide-in-from-bottom-4 duration-700">
+                <div className="text-center">
+                    <h2 className="mb-3 text-[36px] font-bold tracking-tight text-brand-secondary">{CONTENT.login.welcome}</h2>
+                    <p className="mb-12 text-[16px] text-brand-text-muted">{CONTENT.login.subtitle}</p>
                 </div>
 
-                <form onSubmit={(e) => e.preventDefault()}>
-                    <div className="form-group">
-                        <label htmlFor="email">{CONTENT.login.emailLabel}</label>
-                        <input
-                            type="email"
-                            id="email"
-                            placeholder={CONTENT.login.emailPlaceholder}
-                            className="form-input"
-                            required
-                        />
-                    </div>
+                <form onSubmit={handleSubmit} className="space-y-6">
+                    {error && (
+                        <div className="rounded-xl bg-red-50 p-4 text-sm text-red-600 border border-red-100 flex items-center gap-3 animate-in fade-in zoom-in-95 duration-200">
+                            <AlertSvg />
 
-                    <div className="form-group">
-                        <label htmlFor="password">{CONTENT.login.passwordLabel}</label>
-                        <div className="input-wrapper">
-                            <input
-                                type={showPassword ? "text" : "password"}
-                                id="password"
-                                placeholder={CONTENT.login.passwordPlaceholder}
-                                className="form-input"
-                                required
-                            />
-                            <button
+                            <span className="font-medium italic">{error}</span>
+                        </div>
+                    )}
+
+                    <Input
+                        label={CONTENT.login.emailLabel}
+                        id="username"
+                        type="text"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        placeholder={CONTENT.login.emailPlaceholder}
+                        required
+                        disabled={loading}
+                    />
+
+                    <Input
+                        label={CONTENT.login.passwordLabel}
+                        id="password"
+                        type={showPassword ? "text" : "password"}
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        placeholder={CONTENT.login.passwordPlaceholder}
+                        required
+                        disabled={loading}
+                        rightElement={
+                            <Button
                                 type="button"
-                                className="password-toggle"
+                                variant="ghost"
+                                className="!p-0 !h-auto !text-brand-text-muted hover:!text-brand-primary !bg-transparent pr-1"
                                 onClick={() => setShowPassword(!showPassword)}
                                 aria-label="Toggle password visibility"
                             >
-                                {/* SVG for visibility toggle */}
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                    {showPassword ? (
-                                        <>
-                                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-                                            <circle cx="12" cy="12" r="3" />
-                                        </>
-                                    ) : (
-                                        <>
-                                            <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
-                                            <line x1="1" y1="1" x2="23" y2="23" />
-                                        </>
-                                    )}
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
+                                <EyeSvg show={showPassword} />
 
-                    <label className="remember-me">
-                        <input type="checkbox" />
-                        <span>{CONTENT.login.rememberMe}</span>
-                    </label>
+                            </Button>
+                        }
+                    />
 
-                    <button type="submit" className="login-button">
-                        {CONTENT.login.buttonText}
-                    </button>
+                    <Checkbox
+                        label={CONTENT.login.rememberMe}
+                        id="rememberMe"
+                    />
+
+                    <Button
+                        type="submit"
+                        size="xl"
+                        isLoading={loading}
+                    >
+                        {loading ? 'Giriş Yapılıyor...' : CONTENT.login.buttonText}
+                    </Button>
                 </form>
+
+                {isAuthenticated && (
+                    <div className="mt-6 p-4 bg-green-50 text-green-700 rounded-xl text-center font-medium border border-green-100 animate-in fade-in duration-300">
+                        Giriş Başarılı! Yönlendiriliyorsunuz...
+                    </div>
+                )}
             </div>
         </section>
     );
 };
+
