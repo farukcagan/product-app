@@ -39,7 +39,7 @@ export const Header = () => {
     };
 
     return (
-        <header className="fixed top-0 z-50 flex h-[80px] w-full items-center justify-between border-b bg-white px-4 md:px-8 shadow-sm backdrop-blur-md bg-white/90">
+        <header className="fixed top-0 z-50 flex h-[80px] w-full items-center justify-between bg-white px-4 md:px-8 shadow-sm backdrop-blur-md bg-white/90">
             <div className="flex items-center gap-4 md:gap-12">
                 <Button
                     variant="ghost"

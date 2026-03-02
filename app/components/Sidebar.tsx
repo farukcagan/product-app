@@ -47,7 +47,7 @@ export const Sidebar = () => {
                 onClick={() => dispatch(setSidebar(false))}
             />
 
-            <aside className={`fixed left-0 top-[80px] z-40 h-[calc(100vh-80px)] w-[320px] transform border-r bg-white p-8 overflow-y-auto transition-transform duration-300 lg:translate-x-0 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+            <aside className={`fixed left-0 top-[80px] z-40 h-[calc(100vh-80px)] w-[320px] transform bg-white p-8 overflow-y-auto transition-transform duration-300 lg:translate-x-0 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
                 <div className="mb-10">
                     <Input
                         placeholder={CONTENT.sidebar.searchPlaceholder}
@@ -57,7 +57,7 @@ export const Sidebar = () => {
                     />
                 </div>
 
-                <div className="flex items-center justify-between mb-8 border-b pb-4">
+                <div className="flex items-center justify-between mb-8 pb-4">
                     <h2 className="text-lg font-bold text-brand-secondary uppercase tracking-wider">{CONTENT.sidebar.categoriesTitle}</h2>
                     {selectedCategory && (
                         <Button
