@@ -91,7 +91,6 @@ export const Header = () => {
                         />
                     </button>
 
-                    {/* Dropdown Menu */}
                     <div className={`absolute right-0 mt-3 w-56 origin-top-right rounded-2xl bg-white p-2 shadow-[0_20px_50px_rgba(0,0,0,0.15)] border border-gray-100 transition-all duration-300 z-50 ${isDropdownOpen ? 'opacity-100 translate-y-0 visible' : 'opacity-0 -translate-y-4 invisible'}`}>
                         <div className="px-4 py-3 border-b border-gray-50 mb-1">
                             <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Hesap Hesabı</p>
