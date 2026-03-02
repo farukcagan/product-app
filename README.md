@@ -1,5 +1,3 @@
-# Octopus eCommerce Case Study
-
 Bu proje, modern bir e-ticaret uygulamasının temel özelliklerini (ürün listeleme, detay görme, sepet yönetimi, kullanıcı girişi vb.) içeren kapsamlı bir React / Next.js uygulamasıdır.
 
 ## 🚀 Teknolojik Yığın (Tech Stack)
