@@ -57,4 +57,15 @@ export const CONTENT = {
         logoAlt: "Octopus Logo",
         illustrationAlt: "Design collaboration illustration",
     },
+    error: {
+        title: "Bir Şeyler Yanlış Gitti",
+        message: "Beklenmedik bir hata oluştu. Lütfen sayfayı yenilemeyi deneyin veya ana sayfaya dönün.",
+        retry: "Tekrar Dene",
+        goHome: "Ana Sayfaya Dön",
+    },
+    notFound: {
+        title: "Sayfa Bulunamadı",
+        message: "Aradığınız sayfa mevcut değil veya taşınmış olabilir.",
+        goHome: "Ana Sayfaya Dön",
+    },
 } as const;
