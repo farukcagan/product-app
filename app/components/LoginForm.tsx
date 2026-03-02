@@ -12,6 +12,9 @@ import { AlertSvg, EyeSvg } from './svg-components';
 
 export const LoginForm = () => {
     const [showPassword, setShowPassword] = useState(false);
+
+    // test kullanıcısı kolayca product gidilmesi için eklenmiştir.
+
     const [username, setUsername] = useState('emilys');
     const [password, setPassword] = useState('emilyspass');
 
