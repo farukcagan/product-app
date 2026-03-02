@@ -97,13 +97,13 @@ export const LoginForm = () => {
                         size="xl"
                         isLoading={loading}
                     >
-                        {loading ? 'Giriş Yapılıyor...' : CONTENT.login.buttonText}
+                        {loading ? CONTENT.login.loadingText : CONTENT.login.buttonText}
                     </Button>
                 </form>
 
                 {isAuthenticated && (
                     <div className="mt-6 p-4 bg-green-50 text-green-700 rounded-xl text-center font-medium border border-green-100 animate-in fade-in duration-300">
-                        Giriş Başarılı! Yönlendiriliyorsunuz...
+                        {CONTENT.login.successMessage}
                     </div>
                 )}
             </div>

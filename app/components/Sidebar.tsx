@@ -7,6 +7,7 @@ import { useState, useEffect } from 'react';
 import { RootState } from '../store/store';
 import { Button, Input, Checkbox } from './ui-components';
 import { SearchSvg } from './svg-components';
+import { CONTENT } from '../constants/content';
 
 export const Sidebar = () => {
     const dispatch = useAppDispatch();
@@ -49,7 +50,7 @@ export const Sidebar = () => {
             <aside className={`fixed left-0 top-[80px] z-40 h-[calc(100vh-80px)] w-[320px] transform border-r bg-white p-8 overflow-y-auto transition-transform duration-300 lg:translate-x-0 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
                 <div className="mb-10">
                     <Input
-                        placeholder="Ürün ara..."
+                        placeholder={CONTENT.sidebar.searchPlaceholder}
                         value={localSearch}
                         onChange={(e) => setLocalSearch(e.target.value)}
                         leftIcon={<SearchSvg />}
@@ -57,7 +58,7 @@ export const Sidebar = () => {
                 </div>
 
                 <div className="flex items-center justify-between mb-8 border-b pb-4">
-                    <h2 className="text-lg font-bold text-brand-secondary uppercase tracking-wider">Kategoriler</h2>
+                    <h2 className="text-lg font-bold text-brand-secondary uppercase tracking-wider">{CONTENT.sidebar.categoriesTitle}</h2>
                     {selectedCategory && (
                         <Button
                             variant="ghost"
@@ -65,7 +66,7 @@ export const Sidebar = () => {
                             onClick={() => dispatch(setCategory(null))}
                             className="!text-brand-primary !p-0 !h-auto hover:!bg-transparent hover:underline"
                         >
-                            Temizle
+                            {CONTENT.sidebar.clearFilter}
                         </Button>
                     )}
                 </div>

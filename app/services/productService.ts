@@ -22,5 +22,9 @@ export const productService = {
 
     getById: (id: string) => {
         return api.get(`/products/${id}`).then(res => res.data);
+    },
+
+    getCommentsByProductId: (id: string) => {
+        return api.get(`/comments/post/${id}`).then(res => res.data);
     }
 };

@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import axios from "axios";
+import { cartService } from "../../services/cartService";
 
 interface CartItem {
     id: number;
@@ -25,19 +25,13 @@ const initialState: CartState = {
     error: null,
 };
 
-// DummyJSON update cart action
 export const updateCartOnServer = createAsyncThunk(
     "cart/updateOnServer",
     async (cartData: { userId: number; products: { id: number; quantity: number }[] }, { rejectWithValue }) => {
         try {
-            // DummyJSON update cart example (using cart id 1 for demo)
-            const response = await axios.put("https://dummyjson.com/carts/1", {
-                merge: true, // merge existing products with new products
-                products: cartData.products,
-            });
-            return response.data;
+            return await cartService.updateCart(cartData.userId, cartData.products);
         } catch (error: any) {
-            return rejectWithValue(error.response?.data?.message || "Failed to update cart");
+            return rejectWithValue(error || "Failed to update cart");
         }
     }
 );

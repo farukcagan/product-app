@@ -3,8 +3,8 @@ import { CONTENT } from '../constants/content';
 
 export const IntroSection = () => {
     return (
-        <section className="flex flex-1 flex-col bg-brand-bg-light px-10 py-[60px] text-center lg:items-start lg:bg-brand-bg-light lg:px-20 lg:py-10 lg:text-left">
-            <div className="flex items-center gap-3 text-[28px] font-extrabold tracking-[-1px] text-brand-secondary">
+        <section className="flex flex-1 flex-col bg-brand-bg-light px-10 py-[60px] text-center lg:items-start lg:bg-brand-bg-light lg:px-10 lg:py-5 lg:text-left">
+            <div className="flex items-center text-[28px] font-extrabold tracking-[-1px] text-brand-secondary">
                 <Image
                     src="/assets/header-logo.png"
                     alt={CONTENT.common.logoAlt}

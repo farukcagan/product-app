@@ -1,69 +1,97 @@
-# Octopus Case Study - E-Commerce Application
+# Octopus eCommerce Case Study
 
-Bu proje, modern web teknolojileri kullanılarak geliştirilmiş, yüksek performanslı ve kullanıcı dostu bir e-ticaret uygulamasıdır. DummyJSON API kullanılarak ürün listeleme, filtreleme, arama ve ürün detayı özellikleri sunmaktadır.
+Bu proje, modern bir e-ticaret uygulamasının temel özelliklerini (ürün listeleme, detay görme, sepet yönetimi, kullanıcı girişi vb.) içeren kapsamlı bir React / Next.js uygulamasıdır.
 
-## 🚀 Özellikler
+## 🚀 Teknolojik Yığın (Tech Stack)
 
-- **Modern Kimlik Doğrulama**: DummyJSON auth servisi ile güvenli giriş yapısı.
-- **Dinamik Ürün Listeleme**: Kategori bazlı filtreleme ve anlık arama desteği.
-- **Gelişmiş Filtreleme**: Kenar çubuğu üzerinden kolay kategori seçimi ve metin tabanlı arama.
-- **Ürün Detay Sayfası**: Çoklu görsel desteği, dinamik yorum listeleme ve sepete ekleme özellikleri.
-- **Durum Yönetimi**: Redux Toolkit ile merkezi state yönetimi ve Redux Persist ile kalıcı veri saklama.
-- **Premium UI/UX**: 
-  - Tailwind CSS 4 ile modern tasarım dili.
-  - Özel Skeleton loading yapısı ile akıcı kullanıcı deneyimi.
-  - Responsive tasarım (Mobil, Tablet, Masaüstü uyumlu).
-  - İnteraktif mikro-animasyonlar.
+*   **Framework:** [Next.js 16.1.6 (App Router)](https://nextjs.org/)
+*   **State Management:** [Redux Toolkit](https://redux-toolkit.js.org/) & [Redux Persist](https://github.com/rt2zz/redux-persist)
+*   **Styling:** [Tailwind CSS 4](https://tailwindcss.com/)
+*   **API Client:** [Axios](https://axios-http.com/)
+*   **Testing:** [Jest](https://jestjs.io/) & [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
+*   **Language:** [TypeScript](https://www.typescriptlang.org/)
 
-## 🛠️ Teknoloji Yığını
+---
 
-- **Framework**: [Next.js 15+](https://nextjs.org/) (App Router)
-- **State Management**: [Redux Toolkit](https://redux-toolkit.js.org/)
-- **Styling**: [Tailwind CSS 4](https://tailwindcss.com/)
-- **API Client**: [Axios](https://axios-http.com/)
-- **Persistence**: [Redux Persist](https://github.com/rt2zz/redux-persist)
-- **Icons & Graphics**: Heroicons, Lucide, Custom SVG
+## 📂 Dosya Yapısı
 
-## 📁 Proje Yapısı
+Proje, sürdürülebilirlik ve ölçeklenebilirlik gözetilerek modüler bir yapıda tasarlanmıştır:
 
 ```text
-app/
-├── components/      # Reusable UI bileşenleri (Header, Sidebar, vb.)
-├── constants/       # Sabit metinler ve konfigürasyonlar
-├── lib/             # API yapılandırması ve utils
-├── services/        # API istek servisleri
-└── store/           # Redux store ve slice yapıları
-    ├── slices/      # Bağımsız state mantıkları
-    └── hooks.ts     # Typed Redux hooks
+├── __tests__             # Test dosyaları (Bileşen ve UI testleri)
+│   ├── components        # Sayfa bazlı bileşen testleri
+│   └── ui-components     # Atomik UI bileşen testleri (Button, Input vb.)
+├── app                   # Next.js App Router kök dizini
+│   ├── components        # Uygulama genelinde kullanılan bileşenler
+│   │   ├── ui-components # Yeniden kullanılabilir komponentler
+│   │   └── svg-components# SVG ikon bileşenleri
+│   ├── constants         # Sabit değerler (Renkler, İçerik Metinleri)
+│   ├── lib               # Yardımcı kütüphaneler ve yardımcı fonksiyonlar
+│   ├── products          # Ürün yönetimi ile ilgili sayfalar (Dinamik rotalar)
+│   ├── services          # API servisleri (Auth, Ürün, Sepet)
+│   └── store             # Redux Store yapılandırması ve Slice'lar
+├── public                # Statik varlıklar (İkonlar, Resimler)
+├── package.json          # Bağımlılıklar ve script'ler
+└── jest.config.js        # Test yapılandırması
 ```
 
-## 🏁 Başlarken
+---
 
-### Gereksinimler
+## 🛠️ Kurulum ve Çalıştırma
 
-- Node.js 18.x veya üzeri
-- npm / yarn / pnpm
+### 1. Hazırlık
+Öncelikle gerekli bağımlılıkları yükleyin:
+```bash
+npm install
+```
 
-### Kurulum
+### 2. Geliştirme Modu (Development)
+Uygulamayı yerelde çalıştırmak için:
+```bash
+npm run dev
+```
+Uygulamaya tarayıcınızdan `http://localhost:3000` adresinden erişebilirsiniz.
 
-1. Depoyu klonlayın:
-   ```bash
-   git clone https://github.com/user/octopus-case.git
-   ```
+### 3. Yayına Hazırlık (Production)
+Uygulamayı derlemek ve optimize edilmiş sürümü çalıştırmak için:
+```bash
+npm run build
+npm run start
+```
 
-2. Bağımlılıkları yükleyin:
-   ```bash
-   npm install
-   ```
+---
 
-3. Geliştirme sunucusunu başlatın:
-   ```bash
-   npm run dev
-   ```
+## 🧪 Test Süreçleri
 
-4. Tarayıcınızda `http://localhost:3000` adresini açın.
+Projede **Unit** ve **Integration** testleri için Jest ve React Testing Library kullanılmaktadır.
 
-## 📝 Notlar
+*   **Tüm testleri çalıştırmak için:**
+    ```bash
+    npm run test
+    ```
+*   **İzleme modunda (Watch Mode) çalıştırmak için:**
+    ```bash
+    npm run test:watch
+    ```
 
-- Uygulama başlangıçta `/` route'unda bir giriş formu sunar. DummyJSON kullanıcı bilgileriyle (örn: `emilys`, `emilyspass`) giriş yapabilirsiniz.
-- Giriş yapmadan `/products` sayfasına erişim middleware/client-side kontrolü ile engellenmiştir.
+Testler `__tests__` dizini altında organize edilmiştir ve bileşenlerin render doğruluğu, kullanıcı etkileşimleri ve state değişimlerini doğrular.
+
+---
+
+## 🧹 Kod Kalitesi ve Standartlar
+
+*   **Linting:** Proje, ESLint ile yapılandırılmıştır. Hataları kontrol etmek için:
+    ```bash
+    npm run lint
+    ```
+*   **İçerik Yönetimi:** Uygulama içerisindeki tüm buton, başlık ve hata metinleri `app/constants/content.ts` dosyasındaki `CONTENT` objesi üzerinden yönetilir. Bu, ileride yapılacak i18n (dil desteği) çalışmalarını kolaylaştırır.
+*   **Renk Paleti:** Marka renkleri `app/constants/colors.ts` dosyasında merkezi olarak tutulur.
+
+---
+
+## ✨ Önemli Özellikler
+
+- **Responsive Tasarım:** Tüm cihazlarda uyumlu çalışan UI/UX bileşenleri.
+- **Redux Persist:** Sayfa yenilense dahi sepet ve kullanıcı oturum bilgilerinin korunması.
+- **Skeleton Loaders:** Veri yüklenirken kullanıcı deneyimini iyileştiren iskelet yükleyiciler.
+- **Dinamik Rotalar:** `products/[id]` yapısı ile detaylı ürün yönetimi.

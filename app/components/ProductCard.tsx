@@ -7,6 +7,7 @@ import { addToCart, updateCartOnServer } from '../store/slices/cartSlice';
 import { Product } from '../store/slices/productsSlice';
 import { StarSvg } from './svg-components';
 import { Button } from './ui-components';
+import { CONTENT } from '../constants/content';
 
 
 interface ProductCardProps {
@@ -81,7 +82,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
                             onClick={handleAddToCart}
                             className="w-full !rounded-xl py-3.5 text-xs"
                         >
-                            Sepete Ekle
+                            {CONTENT.products.addToCart}
                         </Button>
                     </div>
                 </div>

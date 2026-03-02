@@ -10,6 +10,8 @@ import { SearchSvg } from '../components/svg-components';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { fetchCategories, fetchProducts, setCurrentPage } from '../store/slices/productsSlice';
 import { RootState } from '../store/store';
+import { Button } from '../components/ui-components';
+import { CONTENT } from '../constants/content';
 
 
 export default function ProductsPage() {
@@ -60,9 +62,9 @@ export default function ProductsPage() {
                     <div className="mb-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                         <div>
                             <h1 className="text-[28px] font-extrabold text-brand-secondary tracking-tight">
-                                {searchQuery ? `"${searchQuery}" için sonuçlar` : selectedCategory || 'Tüm Ürünler'}
+                                {searchQuery ? `"${searchQuery}" ${CONTENT.products.searchResultsFor}` : selectedCategory || CONTENT.products.pageTitle}
                             </h1>
-                            <p className="text-brand-text-muted mt-1 font-medium">{total} ürün bulundu</p>
+                            <p className="text-brand-text-muted mt-1 font-medium">{total} {CONTENT.products.productsFound}</p>
                         </div>
                     </div>
 
@@ -86,41 +88,39 @@ export default function ProductsPage() {
                                         <SearchSvg width="64" height="64" strokeWidth="1" className="text-gray-400" />
 
                                     </div>
-                                    <h3 className="text-xl font-bold text-brand-secondary">Ürün Bulunamadı</h3>
-                                    <p className="text-brand-text-muted mt-2">Arama kriterlerinizi değiştirerek tekrar deneyebilirsiniz.</p>
+                                    <h3 className="text-xl font-bold text-brand-secondary">{CONTENT.products.notFound}</h3>
+                                    <p className="text-brand-text-muted mt-2">{CONTENT.products.notFoundDescription}</p>
                                 </div>
                             )}
 
-                            {/* Pagination */}
                             {total > itemsPerPage && items.length > 0 && (
                                 <div className="mt-20 flex items-center justify-center gap-2">
-                                    <button
+                                    <Button
+                                        variant="ghost"
                                         onClick={() => handlePageChange(currentPage - 1)}
                                         disabled={currentPage === 1}
-                                        className={`px-4 py-2 text-sm font-bold transition-all ${currentPage === 1
-                                                ? 'text-gray-300 cursor-not-allowed'
-                                                : 'text-[#8E95A2] hover:text-brand-primary'
+                                        className={`!px-4 !py-2 !text-sm !font-bold !transition-all !h-auto !min-h-0 !min-w-0 ${currentPage === 1
+                                            ? '!text-gray-300 !cursor-not-allowed'
+                                            : '!text-[#8E95A2] hover:!text-brand-primary'
                                             }`}
                                     >
-                                        Prev
-                                    </button>
+                                        {CONTENT.products.prev}
+                                    </Button>
 
                                     <div className="flex items-center gap-2">
                                         {(() => {
                                             const pages = [];
-                                            const delta = 1; // Number of neighbors to show around current page
+                                            const delta = 1;
 
                                             if (totalPages <= 7) {
                                                 for (let i = 1; i <= totalPages; i++) pages.push(i);
                                             } else {
-                                                // Always show page 1
                                                 pages.push(1);
 
                                                 if (currentPage > 3) {
                                                     pages.push('...');
                                                 }
 
-                                                // Neighbors
                                                 const start = Math.max(2, currentPage - delta);
                                                 const end = Math.min(totalPages - 1, currentPage + delta);
 
@@ -132,22 +132,22 @@ export default function ProductsPage() {
                                                     pages.push('...');
                                                 }
 
-                                                // Always show last page
                                                 pages.push(totalPages);
                                             }
 
                                             return pages.map((page, idx) => (
                                                 typeof page === 'number' ? (
-                                                    <button
+                                                    <Button
+                                                        variant="ghost"
                                                         key={idx}
                                                         onClick={() => handlePageChange(page)}
-                                                        className={`h-12 w-12 flex items-center justify-center rounded-2xl text-[15px] font-bold transition-all ${currentPage === page
-                                                                ? 'bg-brand-primary text-white shadow-xl shadow-brand-primary/20'
-                                                                : 'bg-white text-brand-secondary border border-gray-100 hover:border-brand-primary/20 hover:bg-gray-50'
+                                                        className={`!h-12 !w-12 !flex !items-center !justify-center !rounded-2xl !text-[15px] !font-bold !transition-all !p-0 ${currentPage === page
+                                                            ? '!bg-brand-primary !text-white !shadow-xl !shadow-brand-primary/20'
+                                                            : '!bg-white !text-brand-secondary !border !border-gray-100 hover:!border-brand-primary/20 hover:!bg-gray-50'
                                                             }`}
                                                     >
                                                         {page}
-                                                    </button>
+                                                    </Button>
                                                 ) : (
                                                     <div key={idx} className="h-12 w-12 flex items-center justify-center text-brand-secondary font-bold">
                                                         {page}
@@ -157,16 +157,17 @@ export default function ProductsPage() {
                                         })()}
                                     </div>
 
-                                    <button
+                                    <Button
+                                        variant="ghost"
                                         onClick={() => handlePageChange(currentPage + 1)}
                                         disabled={currentPage === totalPages}
-                                        className={`px-4 py-2 text-sm font-bold transition-all ${currentPage === totalPages
-                                                ? 'text-gray-300 cursor-not-allowed'
-                                                : 'text-brand-secondary hover:text-brand-primary'
+                                        className={`!px-4 !py-2 !text-sm !font-bold !transition-all !h-auto !min-h-0 !min-w-0 ${currentPage === totalPages
+                                            ? '!text-gray-300 !cursor-not-allowed'
+                                            : '!text-brand-secondary hover:!text-brand-primary'
                                             }`}
                                     >
-                                        Next
-                                    </button>
+                                        {CONTENT.products.next}
+                                    </Button>
                                 </div>
                             )}
                         </>
