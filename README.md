@@ -76,12 +76,6 @@ Testler `__tests__` dizini altında organize edilmiştir ve bileşenlerin render
 
 ---
 
-## 🧹 Kod Kalitesi ve Standartlar
-
-*   **Linting:** Proje, ESLint ile yapılandırılmıştır. Hataları kontrol etmek için:
-    ```bash
-    npm run lint
-    ```
 *   **İçerik Yönetimi:** Uygulama içerisindeki tüm buton, başlık ve hata metinleri `app/constants/content.ts` dosyasındaki `CONTENT` objesi üzerinden yönetilir. Bu, ileride yapılacak i18n (dil desteği) çalışmalarını kolaylaştırır.
 *   **Renk Paleti:** Marka renkleri `app/constants/colors.ts` dosyasında merkezi olarak tutulur.
 
